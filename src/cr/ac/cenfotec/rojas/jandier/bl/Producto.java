@@ -2,7 +2,13 @@ package cr.ac.cenfotec.rojas.jandier.bl;
 
 public class Producto {
 
-    public static void main(String[] args) {
-        System.out.println();
-    }
+    private String nombre;
+    private int cantidad;
+    private String descripcion;
+    private double precio;
+
+
+
+
+
 }
