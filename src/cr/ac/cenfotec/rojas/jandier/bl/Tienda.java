@@ -6,8 +6,8 @@ import java.util.List;
 
 public class Tienda {
 
-     private List<Producto> productosStock;
-    private Carrito carrito = new Carrito();
+    private List<Producto> productosStock;
+//    private final Carrito carrito = new Carrito();
 
 
     public Tienda() {
@@ -28,21 +28,29 @@ public class Tienda {
     }
 
     public void eliminarStock(int id) throws IOException {
-
-        if (carrito.agregarProducto()) {
-            productosStock.remove(buscarProductoId(id));
+        Producto producto = buscarProductoId(id);
+        //Este if verifica si producto existe con el null
+        if (producto != null) {
+            //Modifico la cantidad del producto restandole 1
+            producto.setCantidad(producto.getCantidad() - 1);
+            if (producto.getCantidad() == 0) {
+                //Este conficional es para verificar cuando no haya stock de X producto
+                System.out.println("Ya no hay stock disponible del producto '" + producto.getNombre() + "'");
+            }
         }
     }
 
     public void devolverStock(int id) throws IOException {
-        if (carrito.eliminarProducto()) {
-            productosStock.add(buscarProductoId(id));
+        Producto producto = buscarProductoId(id);
+
+        if (producto != null) {
+            producto.setCantidad(producto.getCantidad() + 1);
         }
     }
 
-    public  void mostrarStock() {
+    public void mostrarStock() {
         for (Producto producto : productosStock) {
-            System.out.println( "[" + producto.getNombre() + "] cantidad -> " + producto.getCantidad() + " -> precio -> $" + producto.getPrecio());
+            System.out.println( "[" + producto.getNombre() + " (#" +producto.getId() + ")] cantidad -> " + producto.getCantidad() + " -> precio -> $" + producto.getPrecio());
         }
     }
 
@@ -55,7 +63,7 @@ public class Tienda {
             return null;
     }
 
-    public double escanearProductos() {
+    public double escanearProductos(Carrito carrito) {
         double total = 0;
 
         //Cada producto de la lista miCarrito se le va a sumar el precio al total.
@@ -67,14 +75,14 @@ public class Tienda {
 
 
 
-    public void imprimirFactura() {
-        System.out.println("-".repeat(10));
+    public void imprimirFactura(Carrito carrito) {
+        System.out.println("-".repeat(35));
         System.out.println("---Factura---");
-        System.out.println("-".repeat(10));
+        System.out.println("-".repeat(35));
         carrito.imprimirCarrito();
-        System.out.println("-".repeat(10));
-        System.out.println("Precio total: " + escanearProductos());
-        System.out.println("-".repeat(10));
+        System.out.println("-".repeat(35));
+        System.out.println("Precio total: " + escanearProductos(carrito));
+        System.out.println("-".repeat(35));
     }
 
 }

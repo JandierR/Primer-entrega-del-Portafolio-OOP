@@ -9,7 +9,7 @@ import java.util.List;
 public class Carrito {
 
     private List<Producto> miCarrito = new ArrayList<>();
-    private Tienda tienda = new Tienda();
+//    private final Tienda tienda = new Tienda();
 
     protected BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 
@@ -18,41 +18,43 @@ public class Carrito {
     }
 
 
-    public boolean agregarProducto() throws IOException {
+    public void agregarProducto(Tienda tienda) throws IOException {
 
         System.out.print("Ingrese el ID del producto que desea agregar: ");
         int id = Integer.parseInt(in.readLine());
 
-        if (tienda.buscarProductoId(id) != null) {
-            miCarrito.add(tienda.buscarProductoId(id));
+        Producto producto = tienda.buscarProductoId(id);
+
+        if (producto != null && producto.getCantidad() > 0) {
+            miCarrito.add(producto);
             tienda.eliminarStock(id);
-            return true;
-        } else {
-            System.out.println("El producto con el ID = #" + id + " no existe");
-            return false;
+            System.out.println(producto.getNombre() + " agregado exitosamente a mi carrito!");
+        }else {
+            System.out.println("El producto con el ID = #" + id  + " no existe!");
         }
     }
 
-    public boolean eliminarProducto() throws IOException {
+    public void eliminarProducto(Tienda tienda) throws IOException {
 
         System.out.print("Ingrese el ID del producto dentro de su carrito que desea eliminar: ");
         int id = Integer.parseInt(in.readLine());
-        if (miCarrito.contains(tienda.buscarProductoId(id))) {
-            miCarrito.remove(tienda.buscarProductoId(id));
+        Producto producto = tienda.buscarProductoId(id);
+
+        if (producto != null && miCarrito.contains(producto)) {
+            miCarrito.remove(producto);
             tienda.devolverStock(id);
-            return true;
-        }else {
+            System.out.println(producto.getNombre() + " fue eliminado de su carrito");
+        } else {
             System.out.println("El producto con el ID = #" + id + " no existe en su carrito");
-            return false;
         }
     }
 
     public void imprimirCarrito() {
 
+        //Tengo que buscar una manera de agregar la cantidad de tal producto en mi carrito
         System.out.println("Productos de mi carrito -->");
         for (Producto producto : miCarrito) {
-            System.out.println("Producto: " + producto.getNombre() + " --> Stock: "
-                    + producto.getCantidad() + " --> Precio: $" + producto.getPrecio());
+            System.out.println("Producto: " + producto.getNombre() + " --> Precio: $" + producto.getPrecio());
         }
     }
 
