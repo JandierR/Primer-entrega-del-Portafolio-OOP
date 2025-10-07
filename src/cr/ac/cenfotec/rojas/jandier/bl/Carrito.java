@@ -8,9 +8,33 @@ import java.util.List;
 
 public class Carrito {
 
+    /*
+    * Clase Carrito: Gestiona los productos seleccionados por el cliente
+    *
+    * 1. ABSTRACCION
+    *    -Modela el concepto de un carrito de compras:
+    *    -Presenta operacions signficativas: agregar, eliminar, imprimir.
+    *    -Oculta implementacion interna
+    *
+    * 2. ENCAPSULAMIENTO
+    *    -miCarrito es privado, solo accesible mediante getMiCarrito()
+    *    -BufferedReader es privado
+    *
+    * 3. MODULARIDAD
+    *    -Cada metodo tiene una responsabilidad unica y clara
+    *    -agregarProducto() solo agrega productos
+    *    -eliminarProducto() elimina
+    *    -imprimirCarrito() muestra
+    *
+    * 4. RELACIONES
+    *    -Agregacion con Producto: el carrito contiene productos, pero los productos pueden existir
+    *     independientemente en la tienda.
+    *    -Dependencia con Tienda: utiliza metodos de tienda pero no la almacena
+    * */
+
     private List<Producto> miCarrito = new ArrayList<>();
 
-    protected BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+    private BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 
     public List<Producto> getMiCarrito() {
         return miCarrito;

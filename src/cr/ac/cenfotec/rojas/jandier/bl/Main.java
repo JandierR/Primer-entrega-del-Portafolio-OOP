@@ -6,6 +6,17 @@ import java.io.InputStreamReader;
 
 public class Main {
 
+    /*
+    * Clase Main: Punto de entrada del sistema
+    * Conceptos OOP
+    *
+    * 1. MODULARIDAD
+    *    -Separación clara entre interfaz de usuario y logica de negocio en Carrito y Tienda.
+    *    -Método menuAcciones encapsula toda la lógica del menu
+    *
+    * 2. RELACIONES
+    *    -Dependencia con Tienda y Carrito: Los crea y usa pero no los almacena como atributos
+    *    -Asociacion: Coordina la interaccion entre Tienda y Carrito */
     private static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 
     public static void main(String[] args) throws IOException {

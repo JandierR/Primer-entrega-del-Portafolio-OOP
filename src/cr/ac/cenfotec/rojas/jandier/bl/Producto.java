@@ -2,6 +2,19 @@ package cr.ac.cenfotec.rojas.jandier.bl;
 
 public class Producto {
 
+    /*
+    * Clase Producto: Representa un producto de la tienda
+    * Conceptos POO aplicados
+    * 1. ABSTRACCION
+    *    -Esta clase modela las características esenciales de un producto, necesarias para
+    *     simular un producto en una tienda como en este contexto
+    *    -Solo incluye los atributos esenciales: nombre, cantidad, id, precio
+    *
+    * 2. ENCAPSULAMIENTO
+    *    -Todos los atributos son privados
+    *    -Se acceden a ellos mediante getters y setters públicos
+    *    -Esto protege la integridad de los datos y permite control sobre su modificación*/
+
     private String nombre;
     private int cantidad;
     private int id;
