@@ -9,7 +9,6 @@ import java.util.List;
 public class Carrito {
 
     private List<Producto> miCarrito = new ArrayList<>();
-//    private final Tienda tienda = new Tienda();
 
     protected BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 

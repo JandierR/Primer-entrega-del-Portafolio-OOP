@@ -20,7 +20,7 @@ public class Main {
         Carrito carrito = new Carrito();
 
         do {
-
+            System.out.println();
             System.out.println("""
                     Elija una opcion:
                     -1. Mostrar productos de la tienda
@@ -29,6 +29,7 @@ public class Main {
                     -4. Mostrar contenido de mi carrito
                     -5. Pagar productos e imprimir factura
                     -0. Salir""");
+            System.out.println();
 
             opcion = Integer.parseInt(in.readLine());
 
