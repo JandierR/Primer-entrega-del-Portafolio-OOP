@@ -59,15 +59,32 @@ public class Carrito {
 
     public void eliminarProducto(Tienda tienda) throws IOException {
 
+        //Se solicita al usuario el ID del producto
         System.out.print("Ingrese el ID del producto dentro de su carrito que desea eliminar: ");
+
+        //Se lee el ID del producto ingresado por el usuario y se almacena en la variable id
         int id = Integer.parseInt(in.readLine());
+
+        //Se obtiene una referencia al producto con el producto que retorna la metodo de buscarProductoId(id)
+        //Con el anterior id como argumento
         Producto producto = tienda.buscarProductoId(id);
 
+        //Se valida que producto no sea nulo y que carrito contenga el producto
         if (producto != null && miCarrito.contains(producto)) {
+
+            //Si la condicion se cumple:
+            //El producto se elimina de la lista miCarrito
             miCarrito.remove(producto);
+
+            //Despues ese producto se devuelve al stock, utilizando su id
             tienda.devolverStock(id);
+
+            //Finalmente se imprime un mensaje de la accion realizada
             System.out.println(producto.getNombre() + " fue eliminado de su carrito");
         } else {
+
+            //Si no se cumple la anterior condicion, significa que no hay ningun producto con tal id en el carrito
+            //Por lo que se imprime tal mensaje
             System.out.println("El producto con el ID = #" + id + " no existe en su carrito");
         }
     }
