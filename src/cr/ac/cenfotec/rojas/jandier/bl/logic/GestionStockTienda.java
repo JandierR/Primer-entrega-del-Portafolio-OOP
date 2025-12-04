@@ -5,7 +5,7 @@ import cr.ac.cenfotec.rojas.jandier.dl.Data;
 
 import java.io.IOException;
 
-public class Tienda {
+public class GestionStockTienda {
 
     /*CLASE TIENDA: Gestiona los productos en stock
 
@@ -38,7 +38,7 @@ public class Tienda {
 
     private Data data ;
 
-    public Tienda(Data data) {
+    public GestionStockTienda(Data data) {
         this.data = data;
     }
 

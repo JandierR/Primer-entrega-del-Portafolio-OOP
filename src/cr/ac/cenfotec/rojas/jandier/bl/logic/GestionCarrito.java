@@ -5,7 +5,7 @@ import cr.ac.cenfotec.rojas.jandier.dl.Data;
 
 import java.io.IOException;
 
-public class Carrito {
+public class GestionCarrito {
 
     /*
     * Clase Carrito: Gestiona los productos seleccionados por el cliente
@@ -36,12 +36,12 @@ public class Carrito {
 //    private BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 
     private Data data;
-    private Tienda tienda;
+    private GestionStockTienda gestionStockTienda;
     ;
 
-    public Carrito(Data data, Tienda tienda) {
+    public GestionCarrito(Data data, GestionStockTienda gestionStockTienda) {
         this.data = data;
-        this.tienda = tienda;
+        this.gestionStockTienda = gestionStockTienda;
     }
 
 
@@ -51,7 +51,7 @@ public class Carrito {
 
         if (producto != null && producto.getCantidad() > 0) {
             data.agregarProductoCarrito(producto);
-            tienda.eliminarStock(id);
+            gestionStockTienda.eliminarStock(id);
             return producto.getNombre() + " agregado exitosamente a mi carrito!";
         }
             return  "El producto con el ID = #" + id  + " no existe!";
@@ -68,7 +68,7 @@ public class Carrito {
             data.getMiCarrito().remove(producto);
 
             //Despues ese producto se devuelve al stock, utilizando su id
-            tienda.devolverStock(id);
+            gestionStockTienda.devolverStock(id);
 
             //Finalmente se imprime un mensaje de la accion realizada
             return producto.getNombre() + " fue eliminado de su carrito";
