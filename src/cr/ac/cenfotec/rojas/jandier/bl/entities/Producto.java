@@ -1,6 +1,6 @@
 package cr.ac.cenfotec.rojas.jandier.bl.entities;
 
-public class Producto {
+public abstract class Producto {
 
     /*
     * Clase Producto: Representa un producto de la tienda
@@ -62,4 +62,28 @@ public class Producto {
     public void setPrecio(double precio) {
         this.precio = precio;
     }
+
+    public abstract double calcularDescuento();
+
+    public abstract String getCategoria();
+
+    public double calcularPrecioFinal() {
+        return precio - calcularDescuento();
+    }
+
+    @Override
+    public String toString() {
+        return "Producto -> " +
+                "Nombre -> " + nombre + '\n' +
+                "Cantidad -> " + cantidad + '\n' +
+                "Categoria -> " + getCategoria() + '\n' +
+                "ID -> #" + id + '\n' +
+                "Precio -> " + precio + '\n';
+    }
+
+    /*
+    Conceptos aplicados:
+    -1. Esta clase es una clase padre que da herencia a sus clases hijas.
+    -2. Esta clase es abstracta y posee metodos abstractos para ser implementados de maneras diferentes en sus clases hijas.
+     */
 }
