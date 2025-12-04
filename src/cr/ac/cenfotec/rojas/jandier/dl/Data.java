@@ -11,14 +11,14 @@ public class Data {
 
 
     public Data() {
-        miCarrito = new ArrayList<>();
         productosStock = new ArrayList<>();
-        agregarProducto(new Producto("Leche", 8, 1001, 1500));
-        agregarProducto(new Producto("Fideos", 14, 1002, 1450));
-        agregarProducto(new Producto("Manzanas", 34, 1003, 550));
-        agregarProducto(new Producto("Helado", 15, 1004, 975));
-        agregarProducto(new Producto("Queso", 7, 1005, 3400));
-        agregarProducto(new Producto("Botella de agua", 1, 1007, 875));
+        agregarProductoStock(new Producto("Leche", 8, 1001, 1500));
+        agregarProductoStock(new Producto("Fideos", 14, 1002, 1450));
+        agregarProductoStock(new Producto("Manzanas", 34, 1003, 550));
+        agregarProductoStock(new Producto("Helado", 15, 1004, 975));
+        agregarProductoStock(new Producto("Queso", 7, 1005, 3400));
+        agregarProductoStock(new Producto("Botella de agua", 1, 1007, 875));
+        miCarrito = new ArrayList<>();
     }
 
     public List<Producto> getMiCarrito() {
@@ -37,7 +37,11 @@ public class Data {
         this.productosStock = productosStock;
     }
 
-    public void agregarProducto(Producto producto) {
+    public void agregarProductoStock(Producto producto) {
         productosStock.add(producto);
+    }
+
+    public void agregarProductoCarrito(Producto producto) {
+        miCarrito.add(producto);
     }
 }

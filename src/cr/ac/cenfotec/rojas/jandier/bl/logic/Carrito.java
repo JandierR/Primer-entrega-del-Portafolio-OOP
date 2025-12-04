@@ -1,12 +1,9 @@
 package cr.ac.cenfotec.rojas.jandier.bl.logic;
 
 import cr.ac.cenfotec.rojas.jandier.bl.entities.Producto;
+import cr.ac.cenfotec.rojas.jandier.dl.Data;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Carrito {
 
@@ -34,77 +31,52 @@ public class Carrito {
     *    -Dependencia con Tienda: utiliza metodos de tienda pero no la almacena
     * */
 
-    private List<Producto> miCarrito = new ArrayList<>();
+//    private List<Producto> miCarrito = new ArrayList<>();
 
-    private BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+//    private BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 
+    private Data data;
+    private Tienda tienda;
+    ;
 
-    public Carrito() {
+    public Carrito(Data data, Tienda tienda) {
+        this.data = data;
+        this.tienda = tienda;
     }
 
-    public List<Producto> getMiCarrito() {
-        return miCarrito;
-    }
 
 
-    public void agregarProducto(Tienda tienda) throws IOException {
 
-        System.out.print("Ingrese el ID del producto que desea agregar: ");
-        int id = Integer.parseInt(in.readLine());
-
-        Producto producto = tienda.buscarProductoId(id);
+    public String agregarProducto(Producto producto, int id) throws IOException {
 
         if (producto != null && producto.getCantidad() > 0) {
-            miCarrito.add(producto);
+            data.agregarProductoCarrito(producto);
             tienda.eliminarStock(id);
-            System.out.println(producto.getNombre() + " agregado exitosamente a mi carrito!");
-        }else {
-            System.out.println("El producto con el ID = #" + id  + " no existe!");
+            return producto.getNombre() + " agregado exitosamente a mi carrito!";
         }
+            return  "El producto con el ID = #" + id  + " no existe!";
     }
 
-    public void eliminarProducto(Tienda tienda) throws IOException {
+    public String eliminarProducto(Producto producto, int id) throws IOException {
 
-        //Se solicita al usuario el ID del producto
-        System.out.print("Ingrese el ID del producto dentro de su carrito que desea eliminar: ");
-
-        //Se lee el ID del producto ingresado por el usuario y se almacena en la variable id
-        int id = Integer.parseInt(in.readLine());
-
-        //Se obtiene una referencia al producto con el producto que retorna la metodo de buscarProductoId(id)
-        //Con el anterior id como argumento
-        Producto producto = tienda.buscarProductoId(id);
 
         //Se valida que producto no sea nulo y que carrito contenga el producto
-        if (producto != null && miCarrito.contains(producto)) {
+        if (producto != null && data.getMiCarrito().contains(producto)) {
 
             //Si la condicion se cumple:
             //El producto se elimina de la lista miCarrito
-            miCarrito.remove(producto);
+            data.getMiCarrito().remove(producto);
 
             //Despues ese producto se devuelve al stock, utilizando su id
             tienda.devolverStock(id);
 
             //Finalmente se imprime un mensaje de la accion realizada
-            System.out.println(producto.getNombre() + " fue eliminado de su carrito");
+            return producto.getNombre() + " fue eliminado de su carrito";
         } else {
 
             //Si no se cumple la anterior condicion, significa que no hay ningun producto con tal id en el carrito
             //Por lo que se imprime tal mensaje
-            System.out.println("El producto con el ID = #" + id + " no existe en su carrito");
+            return ("El producto con el ID = #" + id + " no existe en su carrito");
         }
     }
-
-    public void imprimirCarrito() {
-
-        //Tengo que buscar una manera de agregar la cantidad de tal producto en mi carrito
-        System.out.println("Productos de mi carrito -->");
-        for (Producto producto : miCarrito) {
-            System.out.println("Producto: " + producto.getNombre() + " --> Precio: $" + producto.getPrecio());
-        }
-    }
-
-
-
-
 }

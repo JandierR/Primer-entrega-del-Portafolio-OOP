@@ -35,30 +35,15 @@ public class Tienda {
     */
 
 
-//    private List<Producto> productosStock;
 
-    private Data data;
+    private Data data ;
 
-    public Tienda() {
-//        productosStock = new ArrayList<>();
-//        agregarStock();
-        data = new Data();
+    public Tienda(Data data) {
+        this.data = data;
     }
 
 
-//    public List<Producto> getProductosStock() {
-//        return productosStock;
-//    }
 
-//    public void agregarStock() {
-//        data.agregarProducto(new Producto("Leche", 8, 1001, 1500));
-//        data.agregarProducto(new Producto("Fideos", 14, 1002, 1450));
-//        data.agregarProducto(new Producto("Manzanas", 34, 1003, 550));
-//        data.agregarProducto(new Producto("Helado", 15, 1004, 975));
-//        data.agregarProducto(new Producto("Queso", 7, 1005, 3400));
-//        data.agregarProducto(new Producto("Botella de agua", 1, 1007, 875));
-//
-//    }
 
     public void eliminarStock(int id) throws IOException {
         Producto producto = buscarProductoId(id);
@@ -77,11 +62,7 @@ public class Tienda {
         }
     }
 
-    public void mostrarStock() {
-        for (Producto producto : data.getProductosStock()) {
-            System.out.println("[" + producto.getNombre() + " (#" + producto.getId() + ")] cantidad -> " + producto.getCantidad() + " -> precio -> $" + producto.getPrecio());
-        }
-    }
+
 
     public Producto buscarProductoId(int id) {
         for (Producto producto : data.getProductosStock()) {
@@ -92,30 +73,17 @@ public class Tienda {
         return null;
     }
 
-    public double escanearProductos(Carrito carrito) {
+    public double escanearProductos() {
         double total = 0;
 
         //Cada producto de la lista miCarrito se le va a sumar el precio al total.
-        for (Producto producto : carrito.getMiCarrito()) {
+        for (Producto producto : data.getMiCarrito()) {
             total += producto.getPrecio();
         }
         return total;
     }
 
 
-    public void imprimirFactura(Carrito carrito) {
-        if (carrito.getMiCarrito().isEmpty()) {
-            System.out.println("El carrito está vacío. No se puede generar factura.");
-        } else {
-            System.out.println("-".repeat(35));
-            System.out.println("---Factura---");
-            System.out.println("-".repeat(35));
-            carrito.imprimirCarrito();
-            System.out.println("-".repeat(35));
-            System.out.println("Precio total: " + escanearProductos(carrito));
-            System.out.println("-".repeat(35));
-        }
 
-    }
 
 }
