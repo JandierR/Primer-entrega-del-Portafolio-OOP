@@ -1,8 +1,9 @@
-package cr.ac.cenfotec.rojas.jandier.bl;
+package cr.ac.cenfotec.rojas.jandier.bl.logic;
+
+import cr.ac.cenfotec.rojas.jandier.bl.entities.Producto;
+import cr.ac.cenfotec.rojas.jandier.dl.Data;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Tienda {
 
@@ -34,28 +35,30 @@ public class Tienda {
     */
 
 
+//    private List<Producto> productosStock;
 
-
-    private List<Producto> productosStock;
-
+    private Data data;
 
     public Tienda() {
-        productosStock = new ArrayList<>();
-        agregarStock();
+//        productosStock = new ArrayList<>();
+//        agregarStock();
+        data = new Data();
     }
 
-    public List<Producto> getProductosStock() {
-        return productosStock;
-    }
 
-    public void agregarStock() {
-        productosStock.add(new Producto("Leche", 8, 1001, 1500));
-        productosStock.add(new Producto("Fideos", 14, 1002, 1450));
-        productosStock.add(new Producto("Manzanas", 34, 1003, 550));
-        productosStock.add(new Producto("Helado", 15, 1004, 975));
-        productosStock.add(new Producto("Queso", 7, 1005, 3400));
-        productosStock.add(new Producto("Botella de agua", 1, 1007, 875));
-    }
+//    public List<Producto> getProductosStock() {
+//        return productosStock;
+//    }
+
+//    public void agregarStock() {
+//        data.agregarProducto(new Producto("Leche", 8, 1001, 1500));
+//        data.agregarProducto(new Producto("Fideos", 14, 1002, 1450));
+//        data.agregarProducto(new Producto("Manzanas", 34, 1003, 550));
+//        data.agregarProducto(new Producto("Helado", 15, 1004, 975));
+//        data.agregarProducto(new Producto("Queso", 7, 1005, 3400));
+//        data.agregarProducto(new Producto("Botella de agua", 1, 1007, 875));
+//
+//    }
 
     public void eliminarStock(int id) throws IOException {
         Producto producto = buscarProductoId(id);
@@ -75,13 +78,13 @@ public class Tienda {
     }
 
     public void mostrarStock() {
-        for (Producto producto : productosStock) {
+        for (Producto producto : data.getProductosStock()) {
             System.out.println("[" + producto.getNombre() + " (#" + producto.getId() + ")] cantidad -> " + producto.getCantidad() + " -> precio -> $" + producto.getPrecio());
         }
     }
 
     public Producto buscarProductoId(int id) {
-        for (Producto producto : productosStock) {
+        for (Producto producto : data.getProductosStock()) {
             if (producto.getId() == id) {
                 return producto;
             }

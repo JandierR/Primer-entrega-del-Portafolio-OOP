@@ -1,4 +1,6 @@
-package cr.ac.cenfotec.rojas.jandier.bl;
+package cr.ac.cenfotec.rojas.jandier.bl.logic;
+
+import cr.ac.cenfotec.rojas.jandier.bl.entities.Producto;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -35,6 +37,10 @@ public class Carrito {
     private List<Producto> miCarrito = new ArrayList<>();
 
     private BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+
+
+    public Carrito() {
+    }
 
     public List<Producto> getMiCarrito() {
         return miCarrito;

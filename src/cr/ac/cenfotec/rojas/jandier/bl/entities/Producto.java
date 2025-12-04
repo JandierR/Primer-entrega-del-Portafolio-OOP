@@ -1,4 +1,4 @@
-package cr.ac.cenfotec.rojas.jandier.bl;
+package cr.ac.cenfotec.rojas.jandier.bl.entities;
 
 public class Producto {
 
@@ -26,6 +26,9 @@ public class Producto {
         this.cantidad = cantidad;
         this.id = id;
         this.precio = precio;
+    }
+
+    public Producto() {
     }
 
     public String getNombre() {

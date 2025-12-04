@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Portafolio OOP Domain:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Portafolio_OOP_Domain_jar</output-path>
+    <root id="archive" name="Portafolio OOP Domain.jar">
+      <element id="module-output" name="Portafolio OOP Domain" />
+    </root>
+  </artifact>
+</component>

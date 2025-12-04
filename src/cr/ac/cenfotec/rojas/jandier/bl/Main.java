@@ -1,5 +1,8 @@
 package cr.ac.cenfotec.rojas.jandier.bl;
 
+import cr.ac.cenfotec.rojas.jandier.bl.logic.Carrito;
+import cr.ac.cenfotec.rojas.jandier.bl.logic.Tienda;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -24,6 +27,7 @@ public class Main {
     }
 
 
+    //Tengo que eliminar este metodo porque ya tiene su version en UI
     public static void menuAcciones() throws IOException {
         int opcion;
         Tienda tienda = new Tienda();
