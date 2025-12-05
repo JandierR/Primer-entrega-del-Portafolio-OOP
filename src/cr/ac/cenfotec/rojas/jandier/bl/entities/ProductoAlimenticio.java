@@ -3,8 +3,8 @@ package cr.ac.cenfotec.rojas.jandier.bl.entities;
 public class ProductoAlimenticio extends Producto {
     private boolean esPerecible;
 
-    public ProductoAlimenticio(String nombre, int cantidad, int id, double precio, boolean esPerecible) {
-        super(nombre, cantidad, id, precio);
+    public ProductoAlimenticio(String nombre, int cantidad, int id, double precio, boolean contieneProductoAnimal, boolean esPerecible) {
+        super(nombre, cantidad, id, precio, contieneProductoAnimal);
         this.esPerecible = esPerecible;
     }
 
@@ -21,6 +21,13 @@ public class ProductoAlimenticio extends Producto {
 
         }
         return -1;
+    }
+    @Override
+    public String toString() {
+        if (esVegano(getId())) {
+            return "Producto vegano";
+        }
+        return "";
     }
 
     @Override

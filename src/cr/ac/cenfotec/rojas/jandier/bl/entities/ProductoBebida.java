@@ -4,8 +4,8 @@ public class ProductoBebida extends Producto {
 
     private boolean esGaseosa;
 
-    public ProductoBebida(String nombre, int cantidad, int id, double precio, boolean esGaseosa) {
-        super(nombre, cantidad, id, precio);
+    public ProductoBebida(String nombre, int cantidad, int id, double precio, boolean contieneProductoAnimal, boolean esGaseosa) {
+        super(nombre, cantidad, id, precio, contieneProductoAnimal);
         this.esGaseosa = esGaseosa;
     }
 
@@ -18,7 +18,8 @@ public class ProductoBebida extends Producto {
     @Override
     public double calcularDescuento() {
         if (esGaseosa) {
-            return getPrecio() * 0.15;
+            double descuento = getPrecio() * 0.15;
+            return getPrecio() - descuento;
         }
         return 0;
     }
@@ -27,6 +28,19 @@ public class ProductoBebida extends Producto {
     @Override
     public String getCategoria() {
         return "Bebida";
+    }
+
+    @Override
+    public String toString() {
+        if (esVegano(getId())) {
+            return "Producto vegano";
+        }
+        return "";
+    }
+
+    @Override
+    public boolean tieneDescuento(int id) {
+        return super.tieneDescuento(id);
     }
 
     public boolean isEsGaseosa() {

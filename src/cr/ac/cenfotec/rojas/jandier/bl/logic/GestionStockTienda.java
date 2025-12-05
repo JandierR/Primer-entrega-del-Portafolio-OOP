@@ -38,7 +38,7 @@ public class GestionStockTienda {
     */
 
 
-    private Data data;
+    private static Data data;
 
     public GestionStockTienda(Data data) {
         this.data = data;
@@ -65,7 +65,7 @@ public class GestionStockTienda {
     }
 
 
-    public Producto buscarProducto(int id) {
+    public static Producto buscarProducto(int id) {
         for (Producto producto : data.getProductosStock()) {
             if (producto.getId() == id) {
                 return producto;
@@ -90,13 +90,14 @@ public class GestionStockTienda {
 
         //Cada producto de la lista miCarrito se le va a sumar el precio al total.
         for (Producto producto : data.getMiCarrito()) {
-            total += producto.getPrecio();
+            double descuento = producto.getPrecio() * .20;
             if (producto.tieneDescuento(producto.getId())) {
-                double descuento = producto.getPrecio() * .20;
-                total -= descuento;
+               total += producto.getPrecio() - descuento;
+               continue;
             }
+            total += producto.getPrecio();
         }
-        return total;
+        return total ;
     }
 
 

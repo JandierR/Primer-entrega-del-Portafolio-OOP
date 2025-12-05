@@ -15,13 +15,13 @@ public class Data {
 
     public Data() {
         productosStock = new ArrayList<>();
-        agregarProductoStock(new ProductoLacteo("Leche", 8, 1001, 1500, true));
-        agregarProductoStock(new ProductoAlimenticio("Fideos", 14, 1002, 1450, true));
-        agregarProductoStock(new ProductoAlimenticio("Manzanas", 34, 1003, 550,true));
-        agregarProductoStock(new ProductoLacteo("Helado", 15, 1004, 975,false));
-        agregarProductoStock(new ProductoLacteo("Queso", 7, 1005, 3400,true));
-        agregarProductoStock(new ProductoBebida("Botella de agua", 1, 1007, 875,false));
-        agregarProductoStock(new ProductoBebida("Coca Cola", 6, 1008, 1550,true));
+        agregarProductoStock(new ProductoLacteo("Leche", 8, 1001, 1500, true, true));
+        agregarProductoStock(new ProductoAlimenticio("Fideos", 14, 1002, 1450, true, true));
+        agregarProductoStock(new ProductoAlimenticio("Manzanas", 34, 1003, 550,false,true));
+        agregarProductoStock(new ProductoLacteo("Helado", 15, 1004, 975,true,true));
+        agregarProductoStock(new ProductoLacteo("Queso", 7, 1005, 3400,true,true));
+        agregarProductoStock(new ProductoBebida("Botella de agua", 1, 1007, 875,false,false));
+        agregarProductoStock(new ProductoBebida("Coca Cola", 6, 1008, 1550,true,true));
         miCarrito = new ArrayList<>();
     }
 

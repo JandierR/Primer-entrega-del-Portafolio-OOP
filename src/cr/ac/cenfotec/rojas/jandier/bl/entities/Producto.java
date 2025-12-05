@@ -22,7 +22,8 @@ public abstract class Producto implements Categorizable, Descuentable{
     private int id;
     private double precio;
     private boolean contieneProductoAnimal;
-    private GestionStockTienda gestionStockTienda = new GestionStockTienda();
+//    private Data data = new Data();
+//    private GestionStockTienda gestionStockTienda = new GestionStockTienda(data);
 
 
 
@@ -94,7 +95,19 @@ public abstract class Producto implements Categorizable, Descuentable{
 
     @Override
     public boolean tieneDescuento(int id) {
-        if (gestionStockTienda.buscarProducto(id).cantidad < 50) {
+
+        if (GestionStockTienda.buscarProducto(id).getCantidad() < 50) {
+
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean tieneDescuento() {
+
+        if (GestionStockTienda.buscarProducto(id).getCantidad() < 50) {
+
             return true;
         }
         return false;

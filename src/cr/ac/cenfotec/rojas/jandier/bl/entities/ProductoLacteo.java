@@ -4,8 +4,8 @@ public class ProductoLacteo extends Producto{
     private boolean esDeVaca;
 
 
-    public ProductoLacteo(String nombre, int cantidad, int id, double precio, boolean esDeVaca) {
-        super(nombre, cantidad, id, precio);
+    public ProductoLacteo(String nombre, int cantidad, int id, double precio, boolean contieneProductoAnimal, boolean esDeVaca) {
+        super(nombre, cantidad, id, precio, contieneProductoAnimal);
         this.esDeVaca = esDeVaca;
     }
 
@@ -23,9 +23,23 @@ public class ProductoLacteo extends Producto{
         return -1;
     }
 
+
+
     @Override
     public String getCategoria() {
         return "Lácteo";
+    }
+    @Override
+    public String toString() {
+        if (esVegano(getId())) {
+            return "Producto vegano";
+        }
+        return "";
+    }
+
+    @Override
+    public boolean tieneDescuento(int id) {
+        return super.tieneDescuento(id);
     }
 
     public boolean isEsDeVaca() {
