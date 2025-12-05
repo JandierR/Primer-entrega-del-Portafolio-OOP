@@ -18,8 +18,14 @@ public class ProductoAlimenticio extends Producto {
     public double calcularDescuento() {
         if (esPerecible) {
             return getPrecio() * .10;
+
         }
         return -1;
+    }
+
+    @Override
+    public boolean tieneDescuento(int id) {
+        return super.tieneDescuento(id);
     }
 
     @Override

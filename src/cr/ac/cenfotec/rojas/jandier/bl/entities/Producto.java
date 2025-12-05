@@ -1,6 +1,8 @@
 package cr.ac.cenfotec.rojas.jandier.bl.entities;
 
-public abstract class Producto {
+import cr.ac.cenfotec.rojas.jandier.bl.logic.GestionStockTienda;
+
+public abstract class Producto implements Categorizable, Descuentable{
 
     /*
     * Clase Producto: Representa un producto de la tienda
@@ -19,13 +21,17 @@ public abstract class Producto {
     private int cantidad;
     private int id;
     private double precio;
+    private boolean contieneProductoAnimal;
+    private GestionStockTienda gestionStockTienda = new GestionStockTienda();
 
 
-    public Producto(String nombre, int cantidad, int id, double precio) {
+
+    public Producto(String nombre, int cantidad, int id, double precio, boolean contieneProductoAnimal) {
         this.nombre = nombre;
         this.cantidad = cantidad;
         this.id = id;
         this.precio = precio;
+        this.contieneProductoAnimal = contieneProductoAnimal;
     }
 
     public Producto() {
@@ -79,6 +85,19 @@ public abstract class Producto {
                 "Categoria -> " + getCategoria() + '\n' +
                 "ID -> #" + id + '\n' +
                 "Precio -> " + precio + '\n';
+    }
+
+    @Override
+    public boolean esVegano(int id) {
+        return !contieneProductoAnimal;
+    }
+
+    @Override
+    public boolean tieneDescuento(int id) {
+        if (gestionStockTienda.buscarProducto(id).cantidad < 50) {
+            return true;
+        }
+        return false;
     }
 
     /*
